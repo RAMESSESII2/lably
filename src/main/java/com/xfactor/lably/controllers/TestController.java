@@ -27,11 +27,11 @@ public class TestController {
     ArrayList<Lab> labs = new ArrayList<>();
 
     // @RequestMapping(method = RequestMethod.GET)
-    @GetMapping
+    @GetMapping("/hello")
     public String hello() {
         return "Greetings from XFACTOR!!!";
     }
-
+    //path parameter, 
     @GetMapping("/hello/{name}")
     public String helloName(@PathVariable String name) {
         return "Greetings from " + name + "!!!";
@@ -64,6 +64,7 @@ public class TestController {
     }
 
     @PostMapping("/addLab")
+    // public @ResponseBody Lab addLab(@RequestBody Lab lab) 
     public Lab addLab(@RequestBody Lab lab) {
         String name = lab.getName();
         name = "Hello " + name;
