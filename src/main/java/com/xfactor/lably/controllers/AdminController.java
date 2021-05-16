@@ -45,13 +45,12 @@ public class AdminController {
     }
     @GetMapping("/get/{uname}")
     public Admin findAdmin(@PathVariable String uname){
-        Admin nul = new Admin();
         for( Admin x: admins){
-            if( x.getUsername().equals(uname) ){
+            if( x.getUsername().equalsIgnoreCase(uname) ){
                 return x;
             }
         }
-        return nul;
+        return null;
     }
 
 }
