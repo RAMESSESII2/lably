@@ -3,9 +3,13 @@ package com.xfactor.lably.controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
-import com.xfactor.lably.entity.Lab;
+import com.xfactor.lably.entity.Tests;
+import com.xfactor.lably.repository.TestRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/tests")
 public class TestController {
 
-    ArrayList<Lab> labs = new ArrayList<>();
+    ArrayList<Tests> labs = new ArrayList<>();
+
+    @Autowired
+    TestRepository testRepo;
 
     // @RequestMapping(method = RequestMethod.GET)
     @GetMapping("/hello")
@@ -52,21 +60,29 @@ public class TestController {
         return arrayList;
     }
 
-    @GetMapping("/getLabs")
-    public ArrayList<Lab> getLabs() {
-        return labs;
+    @GetMapping("/getTests")
+    public List<Tests> getTests() {
+        List<Tests> test = testRepo.findAll();
+        return test;
     }
 
-    @PostMapping("/addLab")
+    @PostMapping("/addTests")
     // public @ResponseBody Lab addLab(@RequestBody Lab lab) 
-    public Lab addLab(@RequestBody Lab lab) {
-        String name = lab.getName();
-        name = "Hello " + name;
-        lab.setName(name);
-        labs.add(lab);
-        return lab;
+    public Tests addTests(@RequestBody Tests te) {
+        Tests ptests = testRepo.save(te);
+        return ptests;
     }
 
+    @GetMapping("/findTests")
+    public Tests find(@RequestParam String name){
+        List<Tests> t = testRepo.findAll();
+        for( Tests x: t){
+            if( x.getName().equalsIgnoreCase(name)){
+                return x;
+            }
+        }
+        return null;
+    }
     // // http://localhost:8080/test/hello/xfactor
     // @GetMapping("/hello/{name}")
     // @ResponseBody
