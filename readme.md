@@ -11,8 +11,22 @@ $ ./gradlew
 $ ./gradlew bootRun
 $ curl -v localhost:8080
 ```
+## 2. How to access swagger
+
+Swagger URL: http://localhost:8080/swagger-ui.html
+
+
+## 2. How to access H2 console
+
+Swagger URL: http://localhost:8080/database
 
 ## Entities to create
+
+- Get
+    - Path Param
+    - Request Param
+- Post
+    - Request Body
 
 ### Lab
  - String name
@@ -20,7 +34,7 @@ $ curl -v localhost:8080
  - String phone
  - String pincode
 
- ### Tests
+ ### Test
  - String name
  - String description
  - Double price
@@ -28,8 +42,8 @@ $ curl -v localhost:8080
 
 ### Admin
  - String name
- - String  username
- - String  password
+ - String username
+ - String password
  
 ### Customer
  - String name
@@ -41,13 +55,29 @@ $ curl -v localhost:8080
 ## APIs 
 
 ### Admin controller
- - Add Admin (POST) 
- - List of admins - Must return 5 admin objects (GET)
+ - Add Admin (POST) ("/addAdmin")
+ - List of admins - Must return 5 admin objects (GET) ("/getAdmins")
  - Api to return single admin by username (GET)
 
 ### Lab controller
  - Add Lab (Post)
  - List of labs - Must return 5 labs in list (GET)
  - Api to return single lab by name (GET)
+
+
+### Test controller
+ - Add Test (Post)
+ - List of Test - Must return 5 Test in list (GET)
+ - Api to return single Test by name (GET)
+
+
+ ### Customer controller
+ - Add Customer (Post)
+ - List of Customer - Must return 5 Customer in list (GET)
+ - Api to return single Customer by username (GET)
+
+## Refs
+ - How to create a new project : https://start.spring.io/
+ - Spring Docs :  https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
 
  
