@@ -7,9 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_admin")
+@Table(name = "table_admin")
 public class Admin {
-
     @Id
     @GeneratedValue
     @Column(name = "id")
